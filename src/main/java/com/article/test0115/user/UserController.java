@@ -31,4 +31,13 @@ public class UserController {
         this.userService.register(userForm.getUsername(),userForm.getNickname(),userForm.getPassword1());
         return "redirect:/";
     }
+    @GetMapping("/login")
+    public String login(){
+
+        return "user_login";
+    }
+    @GetMapping("/logout")
+    public String logout(){
+        return "redirect:/";
+    }
 }
