@@ -1,9 +1,7 @@
 package com.article.test0115.article;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.article.test0115.user.SiteUser;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.cglib.core.Local;
@@ -27,4 +25,7 @@ public class Article {
     private LocalDateTime createDate;
 
     private LocalDateTime modifyDate;
+
+    @ManyToOne
+    private SiteUser author;
 }

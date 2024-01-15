@@ -5,6 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,5 +21,13 @@ public class UserService {
         siteUser.setCreateDate(LocalDateTime.now());
 
         this.userRepository.save(siteUser);
+    }
+
+    public SiteUser getUser(String name) {
+        Optional<SiteUser> os = this.userRepository.findByusername(name);
+        if(os.isEmpty()){
+            throw new RuntimeException();
+        }
+        return os.get();
     }
 }
