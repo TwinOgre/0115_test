@@ -25,7 +25,7 @@ public class UserService {
 
     public SiteUser getUser(String name) {
         Optional<SiteUser> os = this.userRepository.findByusername(name);
-        if(os.isEmpty()){
+        if (os.isEmpty()) {
             throw new RuntimeException();
         }
         return os.get();

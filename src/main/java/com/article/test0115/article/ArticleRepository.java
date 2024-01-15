@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ArticleRepository extends JpaRepository<Article,Integer> {
+public interface ArticleRepository extends JpaRepository<Article, Integer> {
 
 
     @Query("select "
@@ -20,5 +20,5 @@ public interface ArticleRepository extends JpaRepository<Article,Integer> {
             + "   A.title like %:keyword% "
             + "   or A.content like %:keyword% "
             + "   or U.username like %:keyword% ")
-            List<Article> findAllByKeyword(@Param("keyword") String keyword);
+    List<Article> findAllByKeyword(@Param("keyword") String keyword);
 }

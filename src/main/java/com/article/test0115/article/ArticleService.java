@@ -12,6 +12,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ArticleService {
     private final ArticleRepository articleRepository;
+
     public List<Article> getList(String keyword) {
 
         return this.articleRepository.findAllByKeyword(keyword);
@@ -28,8 +29,8 @@ public class ArticleService {
     }
 
     public Article getArticle(Integer id) {
-        Optional<Article> oa =  this.articleRepository.findById(id);
-        if(oa.isEmpty()){
+        Optional<Article> oa = this.articleRepository.findById(id);
+        if (oa.isEmpty()) {
             throw new RuntimeException();
         }
 

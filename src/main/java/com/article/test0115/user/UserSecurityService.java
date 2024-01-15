@@ -20,13 +20,13 @@ public class UserSecurityService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<SiteUser> _user= this.userRepository.findByusername(username);
+        Optional<SiteUser> _user = this.userRepository.findByusername(username);
         if (_user.isEmpty()) {
             throw new UsernameNotFoundException("사용자를 찾을 수 없습니다.");
         }
 
         SiteUser user = _user.get();
-        List<GrantedAuthority> authorities =  new ArrayList<>();
+        List<GrantedAuthority> authorities = new ArrayList<>();
 
         return new User(user.getUsername(), user.getPassword(), authorities);
     }

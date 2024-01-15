@@ -21,53 +21,60 @@ import java.util.List;
 public class ArticleController {
     private final ArticleService articleService;
     private final UserService userService;
+
     @GetMapping("/list")
-    public String list(Model model,@RequestParam (value = "keyword",defaultValue = "") String keyword){
+    public String list(Model model, @RequestParam(value = "keyword", defaultValue = "") String keyword) {
         List<Article> articleList = this.articleService.getList(keyword);
         model.addAttribute("articleList", articleList);
-        model.addAttribute("keyword",keyword);
+        model.addAttribute("keyword", keyword);
         return "article_list";
     }
+
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/create")
-    public String create(ArticleForm articleForm){
+    public String create(ArticleForm articleForm) {
         return "article_form";
     }
+
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/create")
-    public String create(@Valid ArticleForm articleForm, BindingResult bindingResult, Principal principal){
-        if(bindingResult.hasErrors()){
+    public String create(@Valid ArticleForm articleForm, BindingResult bindingResult, Principal principal) {
+        if (bindingResult.hasErrors()) {
             return "article_form";
         }
         SiteUser siteUser = this.userService.getUser(principal.getName());
-        this.articleService.create(articleForm.getTitle(),articleForm.getContent(), siteUser);
+        this.articleService.create(articleForm.getTitle(), articleForm.getContent(), siteUser);
 
         return "redirect:/article/list";
     }
+
     @GetMapping("/detail/{id}")
-    public String detail(Model model, @PathVariable("id") Integer id, Principal principal){
-        Article  article = this.articleService.getArticle(id);
+    public String detail(Model model, @PathVariable("id") Integer id, Principal principal) {
+        Article article = this.articleService.getArticle(id);
         model.addAttribute("article", article);
 
         return "article_detail";
     }
+
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/modify/{id}")
-    public String modify(Model model, @PathVariable("id") Integer id,ArticleForm articleForm){
+    public String modify(Model model, @PathVariable("id") Integer id, ArticleForm articleForm) {
         Article article = this.articleService.getArticle(id);
         model.addAttribute(article);
         return "article_modifyForm";
     }
+
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/modify/{id}")
-    public String modfiy(Model model, @PathVariable("id") Integer id, @Valid ArticleForm articleForm, BindingResult bindingResult){
+    public String modfiy(Model model, @PathVariable("id") Integer id, @Valid ArticleForm articleForm, BindingResult bindingResult) {
         Article article = this.articleService.getArticle(id);
-        this.articleService.modify(article,articleForm.getTitle(),articleForm.getContent());
-        return  String.format("redirect:/article/detail/%s", id);
+        this.articleService.modify(article, articleForm.getTitle(), articleForm.getContent());
+        return String.format("redirect:/article/detail/%s", id);
     }
+
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Integer id){
+    public String delete(@PathVariable("id") Integer id) {
         this.articleService.delete(id);
         return "redirect:/";
     }
