@@ -9,14 +9,14 @@
             <h5 class="card-title" th:text="${article.title}"></h5>
             <p class="card-text" th:text="${article.content}"></p>
 
-            <p class="card-text"><small class="text-body-secondary" th:text="${article.createDate}"></small></p>
-            <p class="card-text"><small class="text-body-secondary" th:text="${article.modifyDate}"></small></p>
+            <p class="card-text"><small class="text-body-secondary" th:text="${#temporals.format(article.createDate, 'yyyy-MM-dd HH:mm')}"></small></p>
+            <p class="card-text"><small class="text-body-secondary" th:text="${#temporals.format(article.modifyDate, 'yyyy-MM-dd HH:mm')}"></small></p>
         </div>
         <div class="mb-3">
             <a th:href="@{/article/list}" class="btn btn-primary ms-3">목록</a>
             <a th:href="@{|/article/modify/${article.id}|}"
                th:if="${article.author != null and #authentication.getPrincipal().getUsername() == article.author.username}"
-               sec:authorize="isAuthenticated()" class="btn btn-dark ms-3 inline">수정</a>
+               sec:authorize="isAuthenticated()" class="btn btn-dark ms-3">수정</a>
             <a th:href="@{|/article/delete/${article.id}|}"
                th:if="${article.author != null and #authentication.getPrincipal().getUsername() == article.author.username}"
                sec:authorize="isAuthenticated()" class="btn btn-danger ms-3">삭제</a>
