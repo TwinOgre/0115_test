@@ -1,14 +1,13 @@
 <html layout:decorate="~{layout}">
 <div layout:fragment="content">
-    <h1> articleCreate</h1>
+    <h1 class="ms-3"> ArticleCreate</h1>
     <form th:action="@{/article/create}" method="post" class="form">
         <label for="title" class="label">title</label>
         <input type="text" class="form-control" name="title" id="title">
         <br>
         <label for="content" class="label">content</label>
         <textarea name="content" id="content" cols="30" rows="10" class="form-control"></textarea>
-        <button type="submit" class="btn btn-primary">Article 생성</button>
+        <button type="submit" class="btn btn-primary ms-3">Article 생성</button>
     </form>
-
 </div>
 </html>

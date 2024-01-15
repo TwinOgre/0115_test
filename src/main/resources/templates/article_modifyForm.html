@@ -1,6 +1,6 @@
 <html layout:decorate="~{layout}">
 <div layout:fragment="content">
-    <h1> articleModify</h1>
+    <h1 class="ms-3"> ArticleModify</h1>
     <form th:action="@{|/article/modify/${article.id}|}" method="post" class="form">
         <label for="title" class="label">title</label>
         <input type="text" class="form-control" name="title" id="title">

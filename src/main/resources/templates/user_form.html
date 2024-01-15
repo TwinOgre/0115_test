@@ -1,7 +1,7 @@
 <html layout:decorate="~{layout}">
 <div layout:fragment="content">
-    <h1> userRegister</h1>
-    <form th:action="@{/user/register}" method="post" class="form">
+    <h1 class="ms-3"> UserRegister</h1>
+    <form th:action="@{/user/register}" method="post" class="form pb-2 ps-1">
         <label for="username" class="label">username</label>
         <input type="text" class="form-control" name="username" id="username">
         <br>
@@ -11,10 +11,9 @@
         <label for="password1" class="label">password</label>
         <input type="password" class="form-control" name="password1" id="password1">
         <br>
-        <label for="password2" class="label">password confirm</label>
+        <label for="password2" class="label ">password confirm</label>
         <input type="password" class="form-control" name="password2" id="password2">
-        <br>
-        <button type="submit" class="btn btn-primary">register</button>
+        <button type="submit" class="btn btn-primary ms-3 mt-2">register</button>
     </form>
 </div>
 </html>

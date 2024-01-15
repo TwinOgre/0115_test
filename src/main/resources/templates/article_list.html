@@ -1,22 +1,26 @@
 <html layout:decorate="~{layout}">
 <div layout:fragment="content">
-    <h1> articleList</h1>
+    <h1 class="ms-3"> ArticleList</h1>
+    <form class="ms-3 mb-3" th:action="@{/article/list}" method="get" id="searchForm" role="search">
+        <input type="search" id="keyword" name="keyword" th:value="${kw}">
+        <button type="submit" class="btn btn-success">검색</button>
+    </form>
     <table class="table table-primary">
         <thead>
         <tr>
-            <th>번호</th>
+            <th class="ps-2">번호</th>
             <th>제목</th>
             <th>작성일</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="article, loop:${articleList}">
-            <td th:text="${loop.count}"></td>
+            <td class="ps-3" th:text="${loop.count}"></td>
             <td><a th:href="@{|/article/detail/${article.id}|}" th:text="${article.title}"></a></td>
             <td th:text="${article.createDate}"></td>
         </tr>
         </tbody>
     </table>
-    <a th:href="@{/article/create}"  class="btn btn-primary"> Article 등록</a>
+    <a th:href="@{/article/create}"  class="btn btn-primary ms-3"> Article 등록</a>
 </div>
 </html>

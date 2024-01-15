@@ -5,6 +5,7 @@ import com.article.test0115.user.UserService;
 import jakarta.validation.Valid;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,9 +22,10 @@ public class ArticleController {
     private final ArticleService articleService;
     private final UserService userService;
     @GetMapping("/list")
-    public String list(Model model){
-        List<Article> articleList = this.articleService.getList();
+    public String list(Model model,@RequestParam (value = "keyword",defaultValue = "") String keyword){
+        List<Article> articleList = this.articleService.getList(keyword);
         model.addAttribute("articleList", articleList);
+        model.addAttribute("keyword",keyword);
         return "article_list";
     }
     @PreAuthorize("isAuthenticated()")

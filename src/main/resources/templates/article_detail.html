@@ -1,6 +1,6 @@
 <html layout:decorate="~{layout}">
 <div layout:fragment="content">
-    <h1> articleDetail</h1>
+    <h1 class="ms-3"> ArticleDetail</h1>
     <div class="card">
         <div class="card-header">
             Article
@@ -8,10 +8,22 @@
         <div class="card-body">
             <h5 class="card-title" th:text="${article.title}"></h5>
             <p class="card-text" th:text="${article.content}"></p>
-            <a th:href="@{/article/list}"  class="btn btn-primary">목록</a>
-            <a th:href="@{|/article/modify/${article.id}|}" th:if="${article.author != null and #authentication.getPrincipal().getUsername() == article.author.username}" sec:authorize="isAuthenticated()" class="btn btn-dark">수정</a>
-            <a th:href="@{|/article/delete/${article.id}|}" th:if="${article.author != null and #authentication.getPrincipal().getUsername() == article.author.username}" sec:authorize="isAuthenticated()" class="btn btn-danger">삭제</a>
+
+            <p class="card-text"><small class="text-body-secondary" th:text="${article.createDate}"></small></p>
+            <p class="card-text"><small class="text-body-secondary" th:text="${article.modifyDate}"></small></p>
+        </div>
+        <div class="mb-3">
+            <a th:href="@{/article/list}" class="btn btn-primary ms-3">목록</a>
+            <a th:href="@{|/article/modify/${article.id}|}"
+               th:if="${article.author != null and #authentication.getPrincipal().getUsername() == article.author.username}"
+               sec:authorize="isAuthenticated()" class="btn btn-dark ms-3 inline">수정</a>
+            <a th:href="@{|/article/delete/${article.id}|}"
+               th:if="${article.author != null and #authentication.getPrincipal().getUsername() == article.author.username}"
+               sec:authorize="isAuthenticated()" class="btn btn-danger ms-3">삭제</a>
         </div>
     </div>
+
+
 </div>
+
 </html>
