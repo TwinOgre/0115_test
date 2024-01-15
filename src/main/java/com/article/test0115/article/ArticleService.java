@@ -40,4 +40,8 @@ public class ArticleService {
 
         this.articleRepository.save(article);
     }
+
+    public void delete(Integer id) {
+        this.articleRepository.deleteById(id);
+    }
 }

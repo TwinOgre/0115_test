@@ -15,13 +15,13 @@ public class SiteUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
+    @Column(unique = true)
     private String username;
-    @Column
+    @Column(unique = true)
     private String nickname;
 
     private String password;
     @CreatedDate
     private LocalDateTime createDate;
-    
+
 }
